@@ -126,7 +126,7 @@ namespace Newtonsoft.Json.Converters
                 reader.ReadAndAssert();
             }
 
-            return reflectionObject.Creator(key, value);
+            return reflectionObject.Creator(null, key, value);
         }
 
         /// <summary>

@@ -286,7 +286,7 @@ namespace Newtonsoft.Json.Serialization
                 _genericWrapperCreator = JsonTypeReflector.ReflectionDelegateFactory.CreateParameterizedConstructor(genericWrapperConstructor);
             }
 
-            return (IWrappedCollection)_genericWrapperCreator(list);
+            return (IWrappedCollection)_genericWrapperCreator(null, list);
         }
 
         internal IList CreateTemporaryCollection()

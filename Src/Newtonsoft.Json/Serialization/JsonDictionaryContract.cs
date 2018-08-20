@@ -227,7 +227,7 @@ namespace Newtonsoft.Json.Serialization
                 _genericWrapperCreator = JsonTypeReflector.ReflectionDelegateFactory.CreateParameterizedConstructor(genericWrapperConstructor);
             }
 
-            return (IWrappedDictionary)_genericWrapperCreator(dictionary);
+            return (IWrappedDictionary)_genericWrapperCreator(null, dictionary);
         }
 
         internal IDictionary CreateTemporaryDictionary()

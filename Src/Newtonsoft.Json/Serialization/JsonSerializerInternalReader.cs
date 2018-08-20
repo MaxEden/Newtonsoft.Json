@@ -546,7 +546,7 @@ namespace Newtonsoft.Json.Serialization
                         {
                             ObjectConstructor<object> creator = dictionaryContract.OverrideCreator ?? dictionaryContract.ParameterizedCreator;
 
-                            return creator(dictionary);
+                            return creator(id, dictionary);
                         }
                         else if (dictionary is IWrappedDictionary)
                         {
@@ -895,7 +895,7 @@ namespace Newtonsoft.Json.Serialization
                     {
                         ObjectConstructor<object> creator = arrayContract.OverrideCreator ?? arrayContract.ParameterizedCreator;
 
-                        return creator(list);
+                        return creator(id, list);
                     }
                 }
                 else if (list is IWrappedCollection)
@@ -1176,7 +1176,7 @@ namespace Newtonsoft.Json.Serialization
                 }
                 else
                 {
-                    object list = contract.OverrideCreator();
+                    object list = contract.OverrideCreator(null);
 
                     if (contract.ShouldCreateWrapper)
                     {
@@ -1239,7 +1239,7 @@ namespace Newtonsoft.Json.Serialization
                 else
                 {
                     createdFromNonDefaultCreator = false;
-                    return (IDictionary)contract.OverrideCreator();
+                    return (IDictionary)contract.OverrideCreator(null);
                 }
             }
             else if (contract.IsReadOnlyOrFixedSize)
@@ -1986,7 +1986,7 @@ namespace Newtonsoft.Json.Serialization
                 }
             }
 
-            object createdObject = creator(creatorParameterValues);
+            object createdObject = creator(id, creatorParameterValues);
 
             if (id != null)
             {
@@ -2226,7 +2226,7 @@ namespace Newtonsoft.Json.Serialization
                     return CreateObjectUsingCreatorWithParameters(reader, objectContract, containerMember, objectContract.OverrideCreator, id);
                 }
 
-                newObject = objectContract.OverrideCreator(CollectionUtils.ArrayEmpty<object>());
+                newObject = objectContract.OverrideCreator(id, CollectionUtils.ArrayEmpty<object>());
             }
             else if (objectContract.DefaultCreator != null &&
                      (!objectContract.DefaultCreatorNonPublic || Serializer._constructorHandling == ConstructorHandling.AllowNonPublicDefaultConstructor || objectContract.ParameterizedCreator == null))

@@ -540,7 +540,7 @@ namespace Newtonsoft.Json.Serialization
                         return null;
                     }
 
-                    return (IEnumerable<KeyValuePair<object, object>>)createEnumerableWrapper(dictionary);
+                    return (IEnumerable<KeyValuePair<object, object>>)createEnumerableWrapper(null, dictionary);
                 };
 
                 contract.ExtensionDataGetter = extensionDataGetter;

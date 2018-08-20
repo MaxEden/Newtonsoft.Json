@@ -92,7 +92,7 @@ namespace Newtonsoft.Json.Utilities
                 {
                     Func<object> ctor = delegateFactory.CreateDefaultConstructor<object>(t);
 
-                    creatorConstructor = args => ctor();
+                    creatorConstructor = (id,args) => ctor();
                 }
             }
 

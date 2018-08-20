@@ -48,14 +48,14 @@ namespace Newtonsoft.Json.Utilities
             {
                 // don't convert to method group to avoid medium trust issues
                 // https://github.com/JamesNK/Newtonsoft.Json/issues/476
-                return a =>
+                return (id,a) =>
                 {
                     object[] args = a;
                     return c.Invoke(args);
                 };
             }
 
-            return a => method.Invoke(null, a);
+            return (id, a) => method.Invoke(null, a);
         }
 
         public override MethodCall<T, object> CreateMethodCall<T>(MethodBase method)

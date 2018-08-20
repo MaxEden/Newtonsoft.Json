@@ -245,7 +245,7 @@ namespace Newtonsoft.Json.Serialization
                         if (null != parameterizedConstructorInfo)
                         {
                             ObjectConstructor<object> parameterizedConstructor = ReflectionDelegateFactory.CreateParameterizedConstructor(parameterizedConstructorInfo);
-                            return parameterizedConstructor(parameters);
+                            return parameterizedConstructor(null, parameters);
                         }
                         else
                         {
@@ -511,16 +511,16 @@ namespace Newtonsoft.Json.Serialization
         {
             get
             {
-#if !(PORTABLE40 || PORTABLE || DOTNET || NETSTANDARD2_0)
-                if (DynamicCodeGeneration)
-                {
-                    return DynamicReflectionDelegateFactory.Instance;
-                }
+//#if !(PORTABLE40 || PORTABLE || DOTNET || NETSTANDARD2_0)
+//                if (DynamicCodeGeneration)
+//                {
+//                    return DynamicReflectionDelegateFactory.Instance;
+//                }
 
                 return LateBoundReflectionDelegateFactory.Instance;
-#else
-                return ExpressionReflectionDelegateFactory.Instance;
-#endif
+//#else
+//                return ExpressionReflectionDelegateFactory.Instance;
+//#endif
             }
         }
     }
