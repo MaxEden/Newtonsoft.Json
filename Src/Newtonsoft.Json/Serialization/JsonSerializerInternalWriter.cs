@@ -310,6 +310,11 @@ namespace Newtonsoft.Json.Serialization
                 referenceLoopHandling = containerContract.ItemReferenceLoopHandling;
             }
 
+            if(value != null && value.GetType().IsValueType)
+            {
+                return true;
+            }
+
             bool exists = (Serializer._equalityComparer != null)
                 ? _serializeStack.Contains(value, Serializer._equalityComparer)
                 : _serializeStack.Contains(value);
